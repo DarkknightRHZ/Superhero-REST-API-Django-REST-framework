@@ -1,7 +1,7 @@
 from django.db import models
 
 class Superhero(models.Model):
-    hero_id = models.IntegerField(unique=True, null=False)
+    hero_id = models.IntegerField(null=False)
     name = models.CharField(max_length=100)
     alias = models.CharField(max_length=100)
     universe = models.CharField(max_length=100)
