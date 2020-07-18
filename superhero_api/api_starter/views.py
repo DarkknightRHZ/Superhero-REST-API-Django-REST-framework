@@ -3,7 +3,9 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .models import Superhero
 from .serializers import Superhero_serializer
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def superhero_list(request):
     if request.method == 'GET':
         superheros = Superhero.objects.all()
@@ -11,7 +13,7 @@ def superhero_list(request):
         return JsonResponse(serializer.data, safe=False)
     
     elif request.method == 'POST':
-        data = JSON.Parser().parse(request)
+        data = JSONParser().parse(request)
         serializer = Superhero_serializer(data=data)
         if serializer.is_valid():
             serializer.save()
